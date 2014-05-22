@@ -1,0 +1,333 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+          "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+    <!--minifyier: http://refresh-sf.com/yui/#output-->
+    <title>Service Bus JavaScrcipt SDK QueueClient Test Page</title>
+    <link rel="stylesheet" href="css/qunit-git.css" type="text/css" />
+    <link rel="stylesheet" href="css/main.css" type="text/css" />
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"> </script>
+
+    <script src="Scripts/servicebussdk-1.0.js"></script>
+    <!--<script src="Scripts/servicebusjssdk-1.0.min.js"></script>-->
+  
+    <!-- Syntax Highlighter -->
+    <link rel="stylesheet" href="css/shCore.css" type="text/css" /> <!-- SyntaxHighlighter CSS style -->
+    <link rel="stylesheet" href="css/shThemeEclipse.css" type="text/css" /> <!-- SyntaxHighlighter ThemeStyle -->
+    <script src="Scripts/shCore.js"></script> <!-- SyntaxHighlighter js file -->
+    <script type="text/javascript" src="Scripts/shBrushJScript.js"></script> <!-- JS highlighting -->
+    <!-- Syntax Highlighter -->
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            var clear = function () {
+                $("#result").html("");
+                $("#msgId").html("");
+
+                txtMsgLockUri.value = "lock uri will be appended automatically.";
+
+            }
+            var queue = "samplequeue";
+
+            var queueClient = new QueueClient(
+            {
+                'name': queue,
+                'namespace': "frankfurt",
+                'sasKey': "n514Nd+TImVet6+5vZG9HPMBhVsw7aHN71lHOK40cBg=",
+                'sasKeyName': "device_send_listen",
+                'timeOut': 10,
+            });
+
+
+            $("#btnSend").click(function () {
+
+                var msgBody = { "message": txtMsg.value, "id": 1234 };
+                var props = [{ 'Name': 'Property1', 'Value': 'Hello' }, { 'Name': 'Property2', 'Value': 1234 }]
+
+                var msg = new BrokeredMessage(msgBody, props);
+
+                clear();
+
+                queueClient.sendMessage(msg, function (messagingResult) {
+                    $("#result").html(messagingResult.body);
+                }, "application/json");
+            });
+
+
+            $("#btnReceive").click(function () {
+                clear();
+                queueClient.receiveMessage(function (messagingResult) {
+                    $("#result").html(messagingResult.brokeredMessage.body);
+                    if (messagingResult.brokeredMessage.properties != null &&
+                        messagingResult.brokeredMessage.properties.brokerProperties != null) {
+                        $("#msgId").html(messagingResult.brokeredMessage.properties.brokerProperties.MessageId);
+                        $("#txtMsgLockUri").val(messagingResult.brokeredMessage.properties.Location);
+                    }
+                    else
+                        $("#msgId").html("No messages in queue.");
+                });
+            });
+
+            $("#btnPeekLock").click(function () {
+                clear();
+                queueClient.peekLockMessage(function (messagingResult) {
+                    $("#result").html(messagingResult.brokeredMessage.body);
+                    if (messagingResult.brokeredMessage.properties != null &&
+                        messagingResult.brokeredMessage.properties.brokerProperties != null) {
+                        $("#msgId").html(messagingResult.brokeredMessage.properties.brokerProperties.MessageId);
+                        $("#txtMsgLockUri").val(messagingResult.brokeredMessage.properties.Location);
+
+                    }
+                });
+            });
+
+            $("#btnComplete").click(function () {
+
+                queueClient.completeMessage(txtMsgLockUri.value, function (messagingResult) {
+                    $("#result").html(messagingResult.brokeredMessage.body);
+                    if (messagingResult.brokeredMessage.properties != null &&
+                        messagingResult.brokeredMessage.properties.brokerProperties != null) {
+                        $("#msgId").html(messagingResult.brokeredMessage.properties.brokerProperties.MessageId);
+                    }
+                });
+
+                clear();
+            });
+
+
+            $("#btnAbandon").click(function () {
+
+                queueClient.abandonMessage(txtMsgLockUri.value, function (messagingResult) {
+                    $("#result").html(messagingResult.brokeredMessage.body);
+                    if (messagingResult.brokeredMessage.properties != null &&
+                        messagingResult.brokeredMessage.properties.brokerProperties != null) {
+                        $("#msgId").html(messagingResult.brokeredMessage.properties.brokerProperties.MessageId);
+                        //  $("#lockUri").html(messagingResult.brokeredMessage.properties.Location);
+                    }
+                });
+                clear();
+            });
+
+        });
+    </script>
+</head>
+<body>
+    <section class="container ">
+
+        <h1 id="qunit-header" class="sample-page-title">JavaScript ServiceBus Queues Test Page</h1>
+        <h2 id="qunit-banner" />
+
+        <div class="inner-wrapper">
+
+            <input id="txtMsg" type="text" value="Hello Service Bus Java Script SDK">
+            <button id="btnSend">Send</button>
+
+            <button class="view-source-send"></button>
+
+
+            <button id="btnReceive">Receive</button>
+
+            <button class="view-source-receive"></button>
+
+
+            <button id="btnPeekLock">PeekLock</button>
+            
+            <button class="view-source-peeklock"></button>
+
+            <br />
+            <br />
+
+
+            <div class="view-source-box-send">
+
+                <code>
+
+
+                    <pre class="brush: js">
+                      
+                            var msgBody = { "message": txtMsg.value, "id": 1234 };
+                            var props = [{ 'Name': 'Property1', 'Value': 'Hello' }, { 'Name': 'Property2', 'Value': 1234 }]
+                            var msg = new BrokeredMessage(msgBody, props);
+                            clear();
+                            queueClient.sendMessage(msg, function (messagingResult) {
+                                $("#result").html(messagingResult.body);
+                            }, "application/json");
+                       
+                </pre>
+
+
+                </code>
+
+            </div> <!-- END view-source-box -->
+
+            <div class="view-source-box-receive">
+
+                <code>
+
+
+                    <pre class="brush: js">
+                            
+                                
+                                queueClient.receiveMessage(function (messagingResult) {
+                                    $("#result").html(messagingResult.brokeredMessage.body);
+                                    if (messagingResult.brokeredMessage.properties != null &&
+                                        messagingResult.brokeredMessage.properties.brokerProperties != null) {
+                                        $("#msgId").html(messagingResult.brokeredMessage.properties.brokerProperties.MessageId);
+                                        $("#txtMsgLockUri").val(messagingResult.brokeredMessage.properties.Location);
+                                    }
+                                    else
+                                        $("#msgId").html("No messages in queue.");
+                                });
+                                   
+                            </pre>
+
+
+                </code>
+
+            </div> <!-- END view-source-box -->
+
+
+            <div class="view-source-box-peeklock">
+
+                <code>
+
+
+                    <pre class="brush: js">
+                                    
+                                         queueClient.peekLockMessage(function (messagingResult) {
+                                            $("#result").html(messagingResult.brokeredMessage.body);
+                                            if (messagingResult.brokeredMessage.properties != null &&
+                                                messagingResult.brokeredMessage.properties.brokerProperties != null) {
+                                                $("#msgId").html(messagingResult.brokeredMessage.properties.brokerProperties.MessageId);
+                                                $("#txtMsgLockUri").val(messagingResult.brokeredMessage.properties.Location);
+                                            }
+                                        });
+                                         
+                                    </pre>
+
+
+                </code>
+
+            </div> <!-- END view-source-box -->
+
+
+            <input id="txtMsgLockUri" type="text" value="Paste here msg lock uri." /> <br />
+            <button id="btnComplete">Complete</button>
+
+            <button class="view-source-complete"></button>
+
+            <button id="btnAbandon">Abandon</button>
+
+            <button class="view-source-abandon"></button>
+
+
+
+            <div class="view-source-box-complete">
+
+                <code>
+
+
+                    <pre class="brush: js">
+                        
+                                queueClient.completeMessage(txtMsgLockUri.value, function (messagingResult) {
+                                    $("#result").html(messagingResult.brokeredMessage.body);
+                                    if (messagingResult.brokeredMessage.properties != null &&
+                                        messagingResult.brokeredMessage.properties.brokerProperties != null) {
+                                        $("#msgId").html(messagingResult.brokeredMessage.properties.brokerProperties.MessageId);
+                                    }
+                                });
+                        </pre>
+
+
+                </code>
+
+            </div> <!-- END view-source-box -->
+            <div class="view-source-box-abandon">
+
+                <code>
+
+
+                    <pre class="brush: js">
+                        
+                                queueClient.abandonMessage(txtMsgLockUri.value, function (messagingResult) {
+                                    $("#result").html(messagingResult.brokeredMessage.body);
+                                    if (messagingResult.brokeredMessage.properties != null &&
+                                        messagingResult.brokeredMessage.properties.brokerProperties != null) {
+                                        $("#msgId").html(messagingResult.brokeredMessage.properties.brokerProperties.MessageId);
+                                    }
+                                });
+                           
+                        </pre>
+
+
+                </code>
+
+            </div> <!-- END view-soiurce-box -->
+
+            <div class="message-wrapper">
+                <p>Message ID:</p>
+                <div id="msgId">
+                </div><br />
+                <p>Message Body:</p>
+                <div id="result">
+                </div><br />
+
+
+            </div> <!-- END: .message-wrapper -->
+
+            <a href="index.html" class="back-btn">Go back</a>
+        </div> <!-- END: .inner-wrapper -->
+
+        <footer class="inner-wrapper">
+
+            <div class="logo"><a href="http://www.daenet.eu/"><img src="./img/logo.png"></a></div>
+
+        </footer>
+
+    </section> <!-- END: .container -->
+    <!-- View Source toggle -->
+
+
+    <script>
+        $(".view-source-receive").click(function () {
+            $(".view-source-box-receive").toggle("slow");
+        });
+    </script>
+
+    <script>
+        $(".view-source-send").click(function () {
+            $(".view-source-box-send").toggle("slow");
+        });
+    </script>
+
+
+    <script>
+        $(".view-source-peeklock").click(function () {
+            $(".view-source-box-peeklock").toggle("slow");
+        });
+    </script>
+
+    <script>
+        $(".view-source-complete").click(function () {
+            $(".view-source-box-complete").toggle("slow");
+        });
+    </script>
+
+    <script>
+        $(".view-source-abandon").click(function () {
+            $(".view-source-box-abandon").toggle("slow");
+        });
+    </script>
+
+
+
+    <!-- END:View Source toggle -->
+    <!-- SyntaxHighlighter -->
+    <script type="text/javascript">
+        SyntaxHighlighter.all()
+    </script> <!-- END: SyntaxHighlighter -->
+
+</body>
+</html>

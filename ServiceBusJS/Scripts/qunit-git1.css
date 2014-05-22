@@ -1,0 +1,126 @@
+body {
+    text-align: center;
+    margin: 0px;
+    padding: 0px;
+    background-image: url('../Images/background.png');
+    
+}
+
+button {
+    background-image: url('../Images/image.png');
+    border: none;
+    width: 90px;
+    height: 25px;
+    background-size: cover;
+    font-family: "Segoe UI";
+    color: black;
+    font-size: 18px;
+    border-radius: 1.5px;
+    text-align: center;
+    text-align: center;
+    border-radius: 3px;
+    transition: all 0.5s ease 0s;
+    -webkit-transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+    min-width: 87px;
+    min-height: 29px;
+    float:right;
+    margin-left: 5px;
+    
+}
+
+
+    button:hover {
+        background-image: url('../Images/image.png');
+        border: none;
+        width: 90px;
+        height: 25px;
+        background-size: cover;
+        font-family: "Segoe UI";
+        color: white;
+        font-size: 18px;
+        box-shadow: 1px 1px 10px 1px;
+    }
+
+div.msgBody {
+    border-radius: 5px;
+    padding-right: 2px;
+    background-color: #F4FFF4;
+    padding-right: 2px;
+    border: 1px solid #008030;
+    text-align: left;
+    margin: 0 auto;
+    width: 650px;
+    height: 150px;
+    float: left;
+    word-break: break-all;
+    word-wrap: break-word;
+   
+   
+}
+
+div.id {
+    border-radius: 3px;
+    background-color: #F4FFF4;
+    color: #333333;
+    padding-right: 2px;
+    border: 1px solid #008030;
+    text-align: left;
+    margin: 0 auto;
+    word-break: break-all;
+    word-wrap: break-word;
+    text-align: center;
+    width: 400px;
+    height: 25px;
+    margin-bottom: 95px;
+    float: left;
+   
+  
+}
+
+input {
+    font-family: 'Segoe UI';
+    width: 500px;
+    background-color: #F4FFF4;
+    margin-bottom: 10px;
+    border: 0;
+    border: 1px solid #008030;
+    float: right;
+    font-family: "Segoe UI";
+}
+
+
+textarea.txtMsg {
+    font-family: 'Segoe UI';
+    color: #000000;
+    font-size: 12px;
+    border: 1px solid #008030;
+    background-color: #F4FFF4;
+    height: 55px;
+    width: 500px;
+    padding: 3px;
+    resize: none;
+    overflow: hidden;
+    border-radius: 3px;
+    float: right;
+    font-family: "Segoe UI";
+}
+
+table {
+    border:groove;
+    align-self: center;
+    padding: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 600px;
+    height: 100px;
+    border: 0px;
+  
+  
+}
+
+p {
+text-align: left;
+font-family: "Segoe UI";
+}

@@ -1,0 +1,239 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+    background-image: url('../Images/images.png');
+}
+
+.ribbon {
+    color: #fff;
+    margin: 0px;
+    position: relative;
+    background: rgb(0, 164, 239);
+    border: 1px solid rgba(0,0,0,.3);
+    box-shadow: 0px 1px 10px rgba(0,0,0,.2);
+    padding: 5px 15px;
+    clear: both;
+    font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial, sans-serif;
+}
+
+button {
+    -moz-box-shadow: inset 0px 0px 0px 0px #bbdaf7;
+    -webkit-box-shadow: inset 0px 0px 0px 0px #bbdaf7;
+    box-shadow: inset 0px 0px 0px 0px #bbdaf7;
+    background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #79bbff), color-stop(1, #378de5) );
+    background: -moz-linear-gradient( center top, #79bbff 5%, #378de5 100% );
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#79bbff', endColorstr='#378de5');
+    background-color: #79bbff;
+    -webkit-border-top-left-radius: 20px;
+    -moz-border-radius-topleft: 20px;
+    border-top-left-radius: 20px;
+    -webkit-border-top-right-radius: 20px;
+    -moz-border-radius-topright: 20px;
+    border-top-right-radius: 20px;
+    -webkit-border-bottom-right-radius: 20px;
+    -moz-border-radius-bottomright: 20px;
+    border-bottom-right-radius: 20px;
+    -webkit-border-bottom-left-radius: 20px;
+    -moz-border-radius-bottomleft: 20px;
+    border-bottom-left-radius: 20px;
+    text-indent: 0;
+    border: 1px solid #84bbf3;
+    display: inline-block;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 15px;
+    font-weight: normal;
+    font-style: normal;
+    height: 24px;
+    line-height: 24px;
+    width: 94px;
+    text-decoration: none;
+    text-align: center;
+    text-shadow: 1px 1px 0px #528ecc;
+    font-family: "Segoe UI";
+    line-height: 6px;
+    transition: all 0.5s ease 0s;
+    -webkit-transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+    outline: none;
+    display: table-cell;
+    vertical-align: middle;
+    float: right;
+
+}
+
+    button:hover {
+        background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #378de5), color-stop(1, #79bbff) );
+        background: -moz-linear-gradient( center top, #378de5 5%, #79bbff 100% );
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#378de5', endColorstr='#79bbff');
+        background-color: #378de5;
+        outline: none;
+    }
+
+    button:active {
+        position: relative;
+        top: 1px;
+        outline: none;
+    }
+
+    button.left {
+        margin-left: 317px;
+        outline: none;
+    }
+
+    button.secondleft {
+        margin-left: 225px;
+        outline: none;
+    }
+
+#btnReceive {
+    -webkit-border-top-left-radius: 20px;
+    -moz-border-radius-topleft: 20px;
+    border-top-left-radius: 20px;
+    -webkit-border-top-right-radius: 20px;
+    -moz-border-radius-topright: 0;
+    border-top-right-radius: 0;
+    -webkit-border-bottom-right-radius: 0;
+    -moz-border-radius-bottomright: 0;
+    border-bottom-right-radius: 0;
+    -webkit-border-bottom-left-radius: 20px;
+    -moz-border-radius-bottomleft: 20px;
+    border-bottom-left-radius: 20px;
+    margin-left: 390px;
+    outline: none;
+}
+
+#btnSend {
+    -webkit-border-top-left-radius: 20px;
+    -moz-border-radius-topleft: 20px;
+    border-top-left-radius: 20px;
+    -webkit-border-top-right-radius: 20px;
+    -moz-border-radius-topright: 20px;
+    border-top-right-radius: 20px;
+    -webkit-border-bottom-right-radius: 20px;
+    -moz-border-radius-bottomright: 20px;
+    border-bottom-right-radius: 20px;
+    -webkit-border-bottom-left-radius: 20px;
+    -moz-border-radius-bottomleft: 20px;
+    border-bottom-left-radius: 20px;
+    float: right;
+    outline: none;
+}
+
+#btnPeekLock {
+    -webkit-border-top-left-radius: 0px;
+    -moz-border-radius-topleft: 0;
+    border-top-left-radius: 0;
+    -webkit-border-top-right-radius: 20px;
+    -moz-border-radius-topright: 20px;
+    border-top-right-radius: 20px;
+    -webkit-border-bottom-right-radius: 20px;
+    -moz-border-radius-bottomright: 20px;
+    border-bottom-right-radius: 20px;
+    -webkit-border-bottom-left-radius: 0;
+    -moz-border-radius-bottomleft: 0;
+    border-bottom-left-radius: 0;
+    outline: none;
+    float: right;
+}
+
+#btncomplete {
+    -webkit-border-top-left-radius: 20px;
+    -moz-border-radius-topleft: 20px;
+    border-top-left-radius: 20px;
+    -webkit-border-top-right-radius: 20px;
+    -moz-border-radius-topright: 0;
+    border-top-right-radius: 0;
+    -webkit-border-bottom-right-radius: 0;
+    -moz-border-radius-bottomright: 0;
+    border-bottom-right-radius: 0;
+    -webkit-border-bottom-left-radius: 20px;
+    -moz-border-radius-bottomleft: 20px;
+    border-bottom-left-radius: 20px;
+    margin-left: 390px;
+    outline: none;
+}
+
+#btnAbandon {
+    -webkit-border-top-left-radius: 0px;
+    -moz-border-radius-topleft: 0;
+    border-top-left-radius: 0;
+    -webkit-border-top-right-radius: 20px;
+    -moz-border-radius-topright: 20px;
+    border-top-right-radius: 20px;
+    -webkit-border-bottom-right-radius: 20px;
+    -moz-border-radius-bottomright: 20px;
+    border-bottom-right-radius: 20px;
+    -webkit-border-bottom-left-radius: 0;
+    -moz-border-radius-bottomleft: 0;
+    border-bottom-left-radius: 0;
+    outline: none;
+    float: right;
+}
+
+textarea {
+    resize: none;
+    outline: none;
+    overflow: hidden;
+    border-radius: 10px;
+    height: 55px;
+    width: 500px;
+    padding: 5px;
+    float: right;
+}
+
+.text {
+    border-radius: 10px;
+    width: 500px;
+    padding: 5px;
+    float: right;
+}
+
+p {
+    color: ghostwhite;
+    text-align: left;
+    margin-left: 10px;
+    font-family: 'Segoe UI';
+}
+
+table {
+    border:groove;
+    align-self: center;
+    padding: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 600px;
+    height: 100px;
+    border: 0px;
+  
+}
+
+#result {
+    background-color: aliceblue;
+    width: 650px;
+    height: 120px;
+    text-align: center;
+    margin: 0 auto;
+    border-radius: 20px;
+    padding: 5px;
+    margin-bottom: 0px;
+    word-break: break-all;
+    word-wrap: break-word;
+    box-shadow: inset 1px 1px 1px 1px;
+}
+
+div {
+    background-color: aliceblue;
+    text-align: left;
+    border-radius: 20px;
+    padding: 5px;
+    width: 390px;
+    word-break: break-all;
+    word-wrap: break-word;
+    box-shadow: inset 1px 1px 1px 1px;
+    vertical-align: top;
+    margin-bottom: 70px;
+   
+}

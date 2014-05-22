@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <!-- This website runs the CORS test cases-->
+    <!-- The cases tests in the servicebus_tests.js file and are written using QUnit. http://docs.jquery.com/QUnit -->
+    <!-- The JavaScript SDK being tested is in the servicebus.js file -->
+    <link rel="stylesheet" href="scripts/qunit-git.css" type="text/css" />
+    <link href="Scripts/qunit-git1.css" rel="stylesheet" /> 
+    <!-- Load jQuery and QUnit -->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"> </script>
+    <script type="text/javascript" src="scripts/qunit-git.js"></script>
+
+    <!-- Load modules to be tested -->
+    <script type="text/javascript" src="scripts/servicebus.js"></script>
+    <script type="text/javascript" src="scripts/servicebus_tests.js"></script>
+    <script type="text/javascript" src="http://crypto-js.googlecode.com/svn/tags/3.0.2/build/rollups/hmac-sha256.js"></script>
+    <script type="text/javascript" src="http://crypto-js.googlecode.com/svn/tags/3.0.2/build/components/enc-base64-min.js"></script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            var queue = "samplequeue";
+
+            SB.initialize({
+                'namespace': "frankfurt",
+                'sasKey': "n514Nd+TImVet6+5vZG9HPMBhVsw7aHN71lHOK40cBg=",
+                'sasKeyName': "device_send_listen",
+                'timeOut': 10,
+            });
+
+            $("#btnSend").click(function () {
+
+                var msg = { "message": txtMsg.value, "id": 1234 };
+                var props = [{ 'Name': 'Property1', 'Value': 'Hello' }, { 'Name': 'Property2', 'Value': 1234 }]
+
+                SB.sendMessage(queue, JSON.stringify(msg), "application/json", function (messagingResult) {
+                    $("#result").html(messagingResult.body);
+                }, props);
+            });
+
+            $("#btnReceive").click(function () {
+                SB.receiveMessage(queue, function (messagingResult) {
+                    $("#result").html(messagingResult.body);
+                    if (messagingResult.properties != null) {
+                        $("#msgId").html(messagingResult.properties.MessageId);
+                        $("#lockUri").html(messagingResult.lockUri);
+
+                    }
+                });
+            });
+
+            $(function () {
+                $("textarea[maxlength]").bind('input propertychange', function () {
+                    var maxLength = $(this).attr('maxlength');
+                    if ($(this).val().length > maxLength) {
+                        $(this).val($(this).val().substring(0, maxLength));
+                    }
+                })
+            });
+
+
+            $("#btnPeekLock").click(function () {
+                SB.peekLockMessage(queue, function (messagingResult) {
+                    $("#result").html(messagingResult.body);
+                    if (messagingResult.properties != null) {
+                        $("#msgId").html(messagingResult.properties.MessageId);
+                        $("#lockUri").html(messagingResult.properties.LockUri);
+                        $("#txtMsgLockUri").val(messagingResult.properties.LockUri);
+
+                    }
+                });
+            });
+
+            $("#btnComplete").click(function () {
+                SB.completeMessage(queue, txtMsgLockUri.value, function (messagingResult) {
+                    $("#result").html(messagingResult.body);
+                    if (messagingResult.properties != null) {
+                        $("#lockUri").html(messagingResult.properties.LockUri);
+                    }
+                });
+            });
+
+
+            $("#btnAbandon").click(function () {
+                SB.abandonMessage(queue, txtMsgLockUri.value, function (messagingResult) {
+                    $("#result").html(messagingResult.body);
+                });
+            });
+
+        });
+    </script>
+    <style type="text/css">
+       
+    </style>
+</head>
+<body>
+
+    <h1 class="ribbon" id="qunit-header">JavaScript ServiceBus Queues Test Page</h1>
+    <h2 id="qunit-banner" />
+    <table>
+        <tr>
+            <td>
+                <br />
+                <textarea id="txtMsg" class="txtMsg" rows="4" cols="1" onclick="if(this.value == 'Please enter some Text to be sent to ServiceBus entity') this.value='' " onkeypress="if (this.value.length > 265) { return false; }">Please enter some Text to be sent to ServiceBus entity</textarea>
+                <br />
+                <br />
+                <br />
+                <button id="btnSend">Send</button>
+                <br />
+                <br />
+                <button id="btnPeekLock">PeekLock</button>
+                <button class="secondleft" id="btnReceive">Receive</button>
+                <br />
+                <br />
+                <input class="text" onblur="if(this.value == '') { this.value='msg lockUri will be pasted here'}" id="txtMsgLockUri" type="text" />
+                <br />
+                <br />
+                <button id="btnAbandon">Abandon</button>
+                <button class="secondleft" id="btncomplete">Complete</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>Message Body:</p>
+                <div class="msgBody" id="result">
+                    &nbsp;
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>Message ID:</p>
+                <div class="id" id="msgId">
+                    &nbsp;  
+                </div>
+                <!--<p>LockUri:</p>
+    <div class="area" id="lockUri">&nbsp;</div>
+    <br />-->
+            </td>
+        </tr>
+        </table>
+</body>
+</html>
