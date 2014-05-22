@@ -29,11 +29,11 @@
                 txtMsgLockUri.value = "lock uri will be appended automatically.";
 
             }
-            var queue = "samplequeue";
+            var queuePath = "samplequeue";
 
             var queueClient = new QueueClient(
             {
-                'name': queue,
+                'name': queuePath,
                 'namespace': "frankfurt",
                 'sasKey': "n514Nd+TImVet6+5vZG9HPMBhVsw7aHN71lHOK40cBg=",
                 'sasKeyName': "device_send_listen",
