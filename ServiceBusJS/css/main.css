@@ -134,22 +134,22 @@ body {
 
 .inner-wrapper {
 	margin:50px auto;
-	width: 600px;
+	width: 650px;
 }
 .message-wrapper {
 
 	margin-top: 20px;
 	/*background: #0086B9;*/
-	width: 621px;
+	width: 650px;
 	color: #0086B9;
 	background: #fff;
 }
 
 .message-wrapper p {
 
-	font-size: 19px;
-	font-weight: bold;
-	padding:20px 0 0 40px;
+	font-size: 16px;
+	font-weight: normal;
+	padding:20px 0 0 10px;
 
 
 
@@ -173,6 +173,7 @@ body {
 #btnPeekLock {
 
 	margin-top: 30px;
+	margin-left: 0;
 	background: #89c402 ;
 	position: relative;
 	font-size: 16px;
@@ -198,12 +199,12 @@ body {
 #txtMsgLockUri {
 
 	height: 40px;
-	width: 100%;
+	width: 640px;
 	background: #049BD5;
 	border: none;
 	color: #fff;
-	padding-left: 20px;
-	font-size: 16px;
+	padding-left: 10px;
+	font-size: 15px;
 }
 
 #lockUri,
@@ -211,8 +212,13 @@ body {
 #result {
 
 	font-size: 15px;
+	padding-left: 10px;
+	border: 1px solid #049BD5;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-top: 8px;
 	padding-top: 10px;
-	padding-left: 40px;
+	height: 30px;
 
 }
 
@@ -231,6 +237,7 @@ body {
 	width: 100px;
 	margin-top: 40px;
 	text-align: right;
+	float: right;
 }
 
 .back-btn:before {
@@ -259,39 +266,32 @@ body {
 	display: none;
 }
 
-a.view-source-send,
-a.view-source-receive,
-a.view-source-peeklock,
-a.view-source-complete,
-a.view-source-abandon {
+
+button.view-source-send,
+button.view-source-receive,
+button.view-source-peeklock,
+button.view-source-complete,
+button.view-source-abandon {
+	background: url(../img/viewsource.png) no-repeat;
+	height: 16px;
+	width: 22px;
+	border: none;
 	cursor: pointer;
-	display: inline-block;
 
-}
-
-
-a.view-source-send:hover,
-a.view-source-receive:hover,
-a.view-source-peeklock:hover,
-a.view-source-complete:hover,
-a.view-source-abandon:hover {
-	text-decoration: underline;
-}
-
-a.view-source-send:active,
-a.view-source-receive:active,
-a.view-source-peeklock:active,
-a.view-source-complete:active,
-a.view-source-abandon:active {
-	text-decoration: underline;
-	font-weight: bold;
 }
 
 
 
 .logo {
-	margin: 0 auto;
+	margin: 100px auto 0 auto;
     width: 190px;
     padding-top: 30px;
 }
 
+.lock-uri p,
+.message-body p {
+
+	font-size: 16px;
+	font-weight: normal;
+	padding:20px 0 10px 0;
+}

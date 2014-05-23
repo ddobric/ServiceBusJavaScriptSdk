@@ -51,7 +51,7 @@
                 clear();
 
                 queueClient.sendMessage(msg, function (messagingResult) {
-                    $("#result").html(messagingResult.body);
+                    $("#result").html(messagingResult.result);
                 }, "application/json");
             });
 
@@ -147,12 +147,22 @@
 
                     <pre class="brush: js">
                       
+                            // Demonstrates how to send a message
+
+                            // Here we set the messagy body. This will be message payload.
                             var msgBody = { "message": txtMsg.value, "id": 1234 };
-                            var props = [{ 'Name': 'Property1', 'Value': 'Hello' }, { 'Name': 'Property2', 'Value': 1234 }]
+                            
+                            // Here we add two custom properties.
+                            var props = [{ 'Name': 'Property1', 'Value': 'Hello' }, 
+                                         { 'Name': 'Property2', 'Value': 1234 }]
+                            
+                            // Message corresponds the BrokeredMessage from .NET SDK.
                             var msg = new BrokeredMessage(msgBody, props);
-                            clear();
+                          
+                            // This sends the message to the queue and registers the    
+                            // the callback to receive the result.
                             queueClient.sendMessage(msg, function (messagingResult) {
-                                $("#result").html(messagingResult.body);
+                                $("#result").html(messagingResult.result);
                             }, "application/json");
                        
                 </pre>

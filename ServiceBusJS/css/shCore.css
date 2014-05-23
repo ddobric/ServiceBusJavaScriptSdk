@@ -32,10 +32,11 @@
   float: none !important;
   height: auto !important;
   left: auto !important;
-  line-height: 1.1em !important;
+  line-height: 1.9em !important;
   margin: 0 !important;
   outline: 0 !important;
-  overflow: visible !important;
+  overflow: hidden !important;
+  overflow-x:hidden!important;
   padding: 0 !important;
   position: static !important;
   right: auto !important;
@@ -44,7 +45,7 @@
   vertical-align: baseline !important;
   width: auto !important;
   box-sizing: content-box !important;
-  font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace !important;
+  font-family: "Segoe UI","Segoe WP",Tahoma,Arial,sans-serif!important;
   font-weight: normal !important;
   font-style: normal !important;
   font-size: 1em !important;
@@ -53,10 +54,10 @@
 }
 
 .syntaxhighlighter {
-  width: 100% !important;
+  width: 600px !important;
   margin: 1em 0 1em 0 !important;
   position: relative !important;
-  overflow: auto !important;
+  overflow: hidden !important;
   font-size: 1em !important;
   padding: 25px;
 }
@@ -137,7 +138,7 @@
   right: 1px !important;
   top: 1px !important;
   width: 11px !important;
-  height: 11px !important;
+  height: 15px !important;
   font-size: 10px !important;
   z-index: 10 !important;
 }
