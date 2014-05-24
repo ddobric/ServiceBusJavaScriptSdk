@@ -30,11 +30,11 @@
 
 /** Header */
 
-#qunit-header {
+#qunit-header {  
 	padding: 0.5em 0 0.5em 1em;
     margin: 0px 0px 0px 0px;
-	color: #8699a4;
-	background-color: black;
+	color: #fff;
+	background-color: #0d3349;
 	font-size: 1.5em;
 	line-height: 1em;
 	font-weight: normal;
