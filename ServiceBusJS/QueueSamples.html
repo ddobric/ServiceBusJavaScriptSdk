@@ -120,35 +120,35 @@
         <h2 id="qunit-banner" />
 
         <div class="inner-wrapper">
+            <div class="message-body">
+                <p>Message Body:</p>
+                <input id="txtMsg" type="text" value="Hello Service Bus Java Script SDK">
+                <button id="btnSend">Send</button>
 
-            <input id="txtMsg" type="text" value="Hello Service Bus Java Script SDK">
-            <button id="btnSend">Send</button>
-
-            <button class="view-source-send"></button>
-
-
-            <button id="btnReceive">Receive</button>
-
-            <button class="view-source-receive"></button>
+                <button class="view-source-send"></button>
 
 
-            <button id="btnPeekLock">PeekLock</button>
-            
-            <button class="view-source-peeklock"></button>
+                <button id="btnReceive">Receive</button>
 
-            <br />
-            <br />
+                <button class="view-source-receive"></button>
 
 
-            <div class="view-source-box-send">
+                <button id="btnPeekLock">PeekLock</button>
 
-                <code>
+                <button class="view-source-peeklock"></button>
+            </div> <!--END: .message-body-->
+                <br />
+                <br />
 
 
-                    <pre class="brush: js">
+                <div class="view-source-box-send">
+
+                    <code>
+
+
+                        <pre class="brush: js">
                       
                             // Demonstrates how to send a message
-
                             // Here we set the messagy body. This will be message payload.
                             var msgBody = { "message": txtMsg.value, "id": 1234 };
                             
@@ -168,16 +168,16 @@
                 </pre>
 
 
-                </code>
+                    </code>
 
-            </div> <!-- END view-source-box -->
+                </div> <!-- END view-source-box -->
 
-            <div class="view-source-box-receive">
+                <div class="view-source-box-receive">
 
-                <code>
+                    <code>
 
 
-                    <pre class="brush: js">
+                        <pre class="brush: js">
                             
                                 
                                 queueClient.receiveMessage(function (messagingResult) {
@@ -194,17 +194,17 @@
                             </pre>
 
 
-                </code>
+                    </code>
 
-            </div> <!-- END view-source-box -->
-
-
-            <div class="view-source-box-peeklock">
-
-                <code>
+                </div> <!-- END view-source-box -->
 
 
-                    <pre class="brush: js">
+                <div class="view-source-box-peeklock">
+
+                    <code>
+
+
+                        <pre class="brush: js">
                                     
                                          queueClient.peekLockMessage(function (messagingResult) {
                                             $("#result").html(messagingResult.brokeredMessage.body);
@@ -218,28 +218,29 @@
                                     </pre>
 
 
-                </code>
+                    </code>
 
-            </div> <!-- END view-source-box -->
+                </div> <!-- END view-source-box -->
 
+            <div class="lock-uri">
+                <p>Message URI</p>
+                <input id="txtMsgLockUri" type="text" value="Paste here msg lock uri." /> <br />
+                <button id="btnComplete">Complete</button>
 
-            <input id="txtMsgLockUri" type="text" value="Paste here msg lock uri." /> <br />
-            <button id="btnComplete">Complete</button>
+                <button class="view-source-complete"></button>
 
-            <button class="view-source-complete"></button>
+                <button id="btnAbandon">Abandon</button>
 
-            <button id="btnAbandon">Abandon</button>
-
-            <button class="view-source-abandon"></button>
-
-
-
-            <div class="view-source-box-complete">
-
-                <code>
+                <button class="view-source-abandon"></button>
+            </div>
 
 
-                    <pre class="brush: js">
+                <div class="view-source-box-complete">
+
+                    <code>
+
+
+                        <pre class="brush: js">
                         
                                 queueClient.completeMessage(txtMsgLockUri.value, function (messagingResult) {
                                     $("#result").html(messagingResult.brokeredMessage.body);
@@ -251,15 +252,15 @@
                         </pre>
 
 
-                </code>
+                    </code>
 
-            </div> <!-- END view-source-box -->
-            <div class="view-source-box-abandon">
+                </div> <!-- END view-source-box -->
+                <div class="view-source-box-abandon">
 
-                <code>
+                    <code>
 
 
-                    <pre class="brush: js">
+                        <pre class="brush: js">
                         
                                 queueClient.abandonMessage(txtMsgLockUri.value, function (messagingResult) {
                                     $("#result").html(messagingResult.brokeredMessage.body);
@@ -272,23 +273,23 @@
                         </pre>
 
 
-                </code>
+                    </code>
 
-            </div> <!-- END view-soiurce-box -->
+                </div> <!-- END view-soiurce-box -->
 
-            <div class="message-wrapper">
-                <p>Message ID:</p>
-                <div id="msgId">
-                </div><br />
-                <p>Message Body:</p>
-                <div id="result">
-                </div><br />
+                <div class="message-wrapper">
+                    <p>Message ID:</p>
+                    <div id="msgId">
+                    </div><br />
+                    <p>Message Body:</p>
+                    <div id="result">
+                    </div><br />
 
 
-            </div> <!-- END: .message-wrapper -->
+                </div> <!-- END: .message-wrapper -->
 
-            <a href="index.html" class="back-btn">Go back</a>
-        </div> <!-- END: .inner-wrapper -->
+                <a href="index.html" class="back-btn">Go back</a>
+            </div> <!-- END: .inner-wrapper -->
 
         <footer class="inner-wrapper">
 

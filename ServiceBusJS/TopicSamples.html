@@ -123,21 +123,25 @@
     <h2 id="qunit-banner" />
 
     <div class="inner-wrapper">
-	    <input id="txtMsg" type="text" value="Hello SB from Java Script">
-	    <button id="btnSend" >Send</button>
+        <div class="message-body">
+            <p>Message Body:</p>
+            <input id="txtMsg" type="text" value="Hello SB from Java Script">
+            <button id="btnSend">Send</button>
 
-        <button class="view-source-send"></button>
+            <button class="view-source-send"></button>
 
 
 
 
-	    <button id="btnReceive">Receive</button>
-            
+            <button id="btnReceive">Receive</button>
+
             <button class="view-source-receive"></button>
 
-	    <button id="btnPeekLock">PeekLock</button>
+            <button id="btnPeekLock">PeekLock</button>
 
-                <button class="view-source-peeklock"> </button> 
+            <button class="view-source-peeklock"> </button>
+
+        </div> <!--END: MEssage Body-->
 
 	    <br />
 	    <br />
@@ -212,19 +216,25 @@
                     
                 </div> <!-- END view-source-box -->
 
-	    <input id="txtMsgLockUri" type="text" value="Paste here msg lock uri." /> <br />
-	    <button id="btnComplete">Complete</button>
-                <button class="view-source-complete"></button>
-	    <button id="btnAbandon">Abandon</button>
-                
-                <button class="view-source-abandon"></button>
+
+        <div class="lock-uri">
+            <p>Lock URI:</p>
+
+            <input id="txtMsgLockUri" type="text" value="Paste here msg lock uri." /> <br />
+            <button id="btnComplete">Complete</button>
+            <button class="view-source-complete"></button>
+            <button id="btnAbandon">Abandon</button>
+
+            <button class="view-source-abandon"></button>
+
+        </div> <!--END: lock-uri-->
 
             <div class="view-source-box-complete">
 
-                    <code>
-                        
-                        
-                        <pre class="brush: js">
+                <code>
+
+
+                    <pre class="brush: js">
                         
                                      subscriptionClient.completeMessage(txtMsgLockUri.value, function (messagingResult) {
                                         $("#result").html(messagingResult.brokeredMessage.body);
@@ -236,17 +246,17 @@
                                     });
                         </pre>
 
-                       
-                    </code>
-                    
+
+                </code>
+
             </div> <!-- END view-source-box -->
 
             <div class="view-source-box-abandon">
 
-                    <code>
-                        
-                        
-                        <pre class="brush: js">
+                <code>
+
+
+                    <pre class="brush: js">
                         
                                 subscriptionClient.abandonMessage(txtMsgLockUri.value, function (messagingResult) {
                                     $("#result").html(messagingResult.brokeredMessage.body);
@@ -259,34 +269,34 @@
                               
                         </pre>
 
-                       
-                    </code>
-                    
-                </div> <!-- END view-source-box -->
 
-	    <div class="message-wrapper">
+                </code>
 
-		    <p>Message ID:</p>
-		    <div id="msgId">
-		    </div> <br>
-		    <p>Message Body:</p>
-		    <div id="result">
-		    </div><br>
-		 
+            </div> <!-- END view-source-box -->
 
-			
-			
-	    </div> <!-- END: .message-wrapper -->
+            <div class="message-wrapper">
 
-        <a href="index.html" class="back-btn">Go back</a>
+                <p>Message ID:</p>
+                <div id="msgId">
+                </div> <br>
+                <p>Message Body:</p>
+                <div id="result">
+                </div><br>
 
-	</div> <!-- END: .inner-wrapper -->
 
-            <footer class="inner-wrapper">
+
+
+            </div> <!-- END: .message-wrapper -->
+
+            <a href="index.html" class="back-btn">Go back</a>
+
+        </div> <!-- END: .inner-wrapper -->
+
+             <footer class="inner-wrapper">
 
               <div class="logo"><a href="http://www.daenet.eu/"><img src="./img/logo.png"></a></div>
           
-        </footer>
+             </footer>
 
 </section> <!-- END: .container -->
 
