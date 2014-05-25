@@ -273,8 +273,8 @@ button.view-source-peeklock,
 button.view-source-complete,
 button.view-source-abandon {
 	background: url(../img/viewsource.png) no-repeat;
-	height: 16px;
-	width: 22px;
+	height: 12px;
+	width: 16px;
 	border: none;
 	cursor: pointer;
 
