@@ -5,7 +5,7 @@
     This script file is the ServiceBus JavaScript SDK.
     (c) by Damir Dobric - daenet GmbH, Frankfurt am Main. All rights reserved.
     It uses the REST protocol to interact with ServiceBus.
-    For usage Examples pls refer to ServiceBusQueueSamples.html or ServiceBusTopicSamples.html
+    For usage Examples please refer to QueueSamples.html, TopicSamples.html or EventHubSamples.html.
 */
 
 function BrokeredMessage(body, properties) {
@@ -22,6 +22,48 @@ function BrokeredMessage(body, properties) {
     this.properties = properties;
 }
 
+function EventData(body) {
+    /// <summary>
+    /// Defines the EventData class which describes the message to be sent 
+    /// to EventHub.
+    /// </summary>
+    /// <param name="body" type="object">
+    /// The EventData payload.
+    /// </param>
+    /// </param>
+    this.body = body;
+}
+
+function EventHubClient(config) {
+    /// <summary>
+    /// The class which enables sendng of events to service bus EventHub.
+    /// </summary>
+    /// <param name="config" type="Object">
+    /// 'name': The name of the topic. 'mytopic', 'customers/customer1', 
+    /// 'namespace': "your service bus namespace",
+    /// 'sasKey': "**cBg=",
+    /// 'sasKeyName': the name of the key which defines permission to send events to the hub.",
+    /// 'timeOut': Defines the timeout in seconds in communication with service bus endpoint.,
+    /// </param>
+
+    if (config.devicename != null)
+        config.name = config.name + "/publishers/" + config.devicename;
+    else
+        config.name = config.name;
+
+    var queueCLient = new QueueClient(config);
+
+
+    this.sendMessage = function (message, callback) {
+        /// <summary>
+        /// Sends the message to the Event Hub.
+        /// </summary>
+        /// <param name="callback" type="function">
+        /// function to be invoked after the message has received or receiving process has failed.
+        /// </param>
+        queueCLient.sendMessage(message, callback);
+    }
+}
 
 function SubscriptionClient(config) {
     /// <summary>
@@ -37,7 +79,7 @@ function SubscriptionClient(config) {
     /// </param>
     config.name = config.name + "/subscriptions/" + config.subscription;
     if (config.subscription == null)
-        throw "'supbsription' of specified configuration object property must not be empy!";
+        throw "'supbsription' of specified configuration object property must not be emtpy!";
 
     var queueClient = new QueueClient(config);
 

@@ -80,13 +80,13 @@
     <Content Include="img\Metalic.png" />
     <Content Include="img\viewsource.png" />
     <Content Include="index.html" />
-    <Content Include="Scripts\servicebusjssdk-1.0.min.js" />
+    <Content Include="EventHubSamples.html" />
+    <Content Include="Scripts\servicebusjssdk-1.2.min.js" />
     <Content Include="Scripts\shBrushJScript.js" />
     <Content Include="Scripts\shCore.js" />
     <Content Include="TopicSamples.html" />
     <Content Include="QueueSamples.html" />
-    <Content Include="Scripts\servicebussdk-1.0.js" />
-    <Content Include="Scripts\servicebus_old.js" />
+    <Content Include="Scripts\servicebusjssdk-1.2.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

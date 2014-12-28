@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+          "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+    <!--minifyier: http://refresh-sf.com/yui/#output-->
+    <title>Service Bus JavaScrcipt SDK QueueClient Test Page</title>
+    <link rel="stylesheet" href="css/qunit-git.css" type="text/css" />
+    <link rel="stylesheet" href="css/main.css" type="text/css" />
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"> </script>
+    <script src="Scripts/servicebusjssdk-1.2.min.js"></script>
+  
+    <!-- Syntax Highlighter -->
+    <link rel="stylesheet" href="css/shCore.css" type="text/css" /> <!-- SyntaxHighlighter CSS style -->
+    <link rel="stylesheet" href="css/shThemeEclipse.css" type="text/css" /> <!-- SyntaxHighlighter ThemeStyle -->
+    <script src="Scripts/shCore.js"></script> <!-- SyntaxHighlighter js file -->
+    <script type="text/javascript" src="Scripts/shBrushJScript.js"></script> <!-- JS highlighting -->
+    <!-- Syntax Highlighter -->
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            var clear = function () {
+                $("#result").html("");
+                $("#msgId").html("");
+
+            }
+            var queuePath = "hub43";
+
+            var ehClient = new EventHubClient(
+            {
+                'name': queuePath,
+                'devicename': 'jssimulator', // This is by specification partition key.
+                'namespace': "se2014",
+                'sasKey': "HKcbwBtiF0SyGzKjvum0zXQoqpJF4TpZR5+sX8AW/bU=",
+                'sasKeyName': "send_events",
+                'timeOut': 10,
+            });
+
+
+            $("#btnSend").click(function () {
+
+                var eventBody = { "temperature": txtTemp.value, "area": txtArea.value };
+
+                var msg = new EventData(eventBody);
+
+                clear();
+
+                ehClient.sendMessage(msg, function (messagingResult) {
+                    $("#result").html(messagingResult.result);
+                    $("#eventData").html(JSON.stringify(eventBody));
+                });
+            });
+
+        });
+    </script>
+</head>
+<body>
+    <section class="container ">
+
+        <h1 id="qunit-header" class="sample-page-title">JavaScript ServiceBus EventHub Test Page</h1>
+        <h2 id="qunit-banner" />
+
+        <div class="inner-wrapper">
+            <div class="message-body">
+                <p>Enter temperature value:</p>
+                <input id="txtTemp" type="text" value="77">
+                <p>Enter area:</p>
+                <input id="txtArea" type="text" value="Frankfurt"><br />
+
+                <button id="btnSend">Send</button>
+
+                <button class="view-source-send"></button>
+
+            </div> <!--END: .message-body-->
+            <br />
+            <br />
+
+
+            <div class="view-source-box-send">
+
+                <code>
+
+
+                    <pre class="brush: js">
+                      
+                            // Demonstrates how to send event data to service bus event hub.
+                            // Here we set the Event Data body. This will be the event payload.
+                            eventBody = { "temperature": txtTemp.value, "area": txtArea.value };
+                            
+                            // Note, EventData does not support properties.
+                            
+                            // Message corresponds the EventData class from .NET SDK.
+                            var msg = new EventData(eventBody);
+                          
+                            // This sends the message to the queue and registers the    
+                            // the callback to receive the result.
+                            eventHubClient.sendMessage(msg, function (messagingResult) {
+                                $("#result").html(messagingResult.result);
+                            });
+                       
+                </pre>
+
+
+                </code>
+
+            </div> <!-- END view-source-box -->
+
+
+            <div class="message-wrapper">
+                <p>Event Data:</p>
+                <div id="eventData">
+                </div><br />
+                <p>Message Body:</p>
+                <div id="result">
+                </div><br />
+
+
+            </div> <!-- END: .message-wrapper -->
+
+            <a href="index.html" class="back-btn">Go back</a>
+        </div> <!-- END: .inner-wrapper -->
+
+        <footer class="inner-wrapper">
+
+            <div class="logo"><a href="http://www.daenet.eu/"><img src="./img/logo.png"></a></div>
+
+        </footer>
+
+    </section> <!-- END: .container -->
+    <!-- View Source toggle -->
+
+
+    <script>
+        $(".view-source-receive").click(function () {
+            $(".view-source-box-receive").toggle("slow");
+        });
+    </script>
+
+    <script>
+        $(".view-source-send").click(function () {
+            $(".view-source-box-send").toggle("slow");
+        });
+    </script>
+
+
+    <script>
+        $(".view-source-peeklock").click(function () {
+            $(".view-source-box-peeklock").toggle("slow");
+        });
+    </script>
+
+    <script>
+        $(".view-source-complete").click(function () {
+            $(".view-source-box-complete").toggle("slow");
+        });
+    </script>
+
+    <script>
+        $(".view-source-abandon").click(function () {
+            $(".view-source-box-abandon").toggle("slow");
+        });
+    </script>
+
+
+
+    <!-- END:View Source toggle -->
+    <!-- SyntaxHighlighter -->
+    <script type="text/javascript">
+        SyntaxHighlighter.all()
+    </script> <!-- END: SyntaxHighlighter -->
+
+</body>
+</html>

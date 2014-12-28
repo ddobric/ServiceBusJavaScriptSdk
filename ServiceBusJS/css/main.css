@@ -207,6 +207,7 @@ body {
 	font-size: 15px;
 }
 
+#eventData,
 #lockUri,
 #msgId,
 #result {
