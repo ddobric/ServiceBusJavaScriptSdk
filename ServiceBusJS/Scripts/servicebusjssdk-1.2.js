@@ -213,9 +213,16 @@ function QueueClient(config) {
         this.brokeredMessage = msg;
     }
 
+    var createBaseUri = function (entityPath) {
+        if (m_ServiceBusForWindowsServer) {
+            return m_ServiceBusForWindowsServerDomain + "/" + m_ServiceNamespace + "/" + entityPath;
+        } else {
+            return m_ServiceNamespace + ".servicebus.windows.net/" + entityPath;
+        }
+    };
     
     var getUri = function (entityName, head) {
-        var entityUri = "https://" + m_ServiceNamespace + ".servicebus.windows.net/" + entityName;
+        var entityUri = "https://" + createBaseUri(entityName);
         var uri;
         if (head == null)
             uri = entityUri + "/messages/?timeout=" + m_Timeout;
@@ -225,23 +232,10 @@ function QueueClient(config) {
         return uri;
     }
 
-    var createUriForAzureServiceBus = function (entityPath) {
-        return "http://" + m_ServiceNamespace + ".servicebus.windows.net/" + entityPath;
-    }
-
-    var createUriForServiceBusForWindowsServer = function (entityPath) {
-        return "http://" + m_ServiceBusForWindowsServerDomain + "/" + m_ServiceNamespace + "/" + entityPath;
-    }
-
     // Creates shared access signature token.
     var getToken = function (entityPath) {
 
-        var uri;
-        if (m_ServiceBusForWindowsServer) {
-            uri = createUriForServiceBusForWindowsServer(entityPath);
-        } else {
-            uri = createUriForAzureServiceBus(entityPath);
-        }
+        var uri = "http://" + createBaseUri(entityPath);
 
         var endocedResourceUri = encodeURIComponent(uri);
 
