@@ -172,6 +172,8 @@ function QueueClient(config) {
     /// 'sasKey': "**cBg=",
     /// 'sasKeyName': the name of the key for SAS "device_send_listen",
     /// 'timeOut': Defines the timeout in seconds in communication with service bus endpoint.,
+    /// 'serviceBusForWindowsServer': Defines if client should connect to local ASB instance,
+    /// 'serviceBusForWindowsServerDomain': Defines domain of local ASB instance,
     /// </param>
     var m_EntityName = "Please provide the queue name. For example 'customer/orders'";
 
@@ -183,6 +185,10 @@ function QueueClient(config) {
 
     var m_SasKeyName = "provide the SAS key name.";
 
+    var m_ServiceBusForWindowsServer = false;
+
+    var m_ServiceBusForWindowsServerDomain = null;
+
     m_ServiceNamespace = config.namespace;
 
     if (config.name != null)
@@ -193,6 +199,10 @@ function QueueClient(config) {
         m_SasKeyName = config.sasKeyName;
     if (config.timeOut != null)
         m_Timeout = config.timeOut;
+    if (config.serviceBusForWindowsServer != null)
+        m_ServiceBusForWindowsServer = config.serviceBusForWindowsServer;
+    if (config.serviceBusForWindowsServerDomain != null)
+        m_ServiceBusForWindowsServerDomain = config.serviceBusForWindowsServerDomain;
 
     if (config.contentType == null)
         m_ContentType = "application/json";
