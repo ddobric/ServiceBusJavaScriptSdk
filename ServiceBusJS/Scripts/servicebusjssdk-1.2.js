@@ -229,10 +229,19 @@ function QueueClient(config) {
         return "http://" + m_ServiceNamespace + ".servicebus.windows.net/" + entityPath;
     }
 
+    var createUriForServiceBusForWindowsServer = function (entityPath) {
+        return "http://" + m_ServiceBusForWindowsServerDomain + "/" + m_ServiceNamespace + "/" + entityPath;
+    }
+
     // Creates shared access signature token.
     var getToken = function (entityPath) {
 
-        var uri = createUriForAzureServiceBus(entityPath);
+        var uri;
+        if (m_ServiceBusForWindowsServer) {
+            uri = createUriForServiceBusForWindowsServer(entityPath);
+        } else {
+            uri = createUriForAzureServiceBus(entityPath);
+        }
 
         var endocedResourceUri = encodeURIComponent(uri);
 
