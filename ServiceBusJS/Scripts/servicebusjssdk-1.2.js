@@ -215,8 +215,12 @@ function QueueClient(config) {
         return uri;
     }
 
+    var getToken = function () {
+        return generateToken(m_EntityName);
+    };
+
     // Creates shared access signature token.
-    var getToken = function (entityPath) {
+    var generateToken = function (entityPath) {
 
         var uri = "http://" + m_ServiceNamespace + ".servicebus.windows.net/" + entityPath;
 
@@ -285,7 +289,7 @@ function QueueClient(config) {
         var body = JSON.stringify(message.body);
         var props = message.properties;
 
-        var securityToken = getToken(m_EntityName);
+        var securityToken = getToken();
         var sendUri = getUri(m_EntityName);
         var xmlHttpRequest = new XMLHttpRequest();
 
@@ -338,7 +342,7 @@ function QueueClient(config) {
         /// <param name="callback" type="function">
         /// function to be invoked after the message has received or receiving process has failed.
         /// </param>
-        var securityToken = getToken(m_EntityName);
+        var securityToken = getToken();
 
         var xmlHttpRequest = new XMLHttpRequest();
         var receiveUri = getUri(m_EntityName, "head");
@@ -384,7 +388,7 @@ function QueueClient(config) {
         /// <param name="callback" type="function">
         /// function to be invoked after the message has received or receiving process has failed.
         /// </param>      
-        var securityToken = getToken(m_EntityName);
+        var securityToken = getToken();
         var uri = getUri(m_EntityName, "head");
 
         var xmlHttpRequest = new XMLHttpRequest();
@@ -433,7 +437,7 @@ function QueueClient(config) {
         /// The URI which has been previouslly retrieved by peekLockMessage() function.
         /// </param>
         var xmlHttpRequest = new XMLHttpRequest();
-        var securityToken = getToken(m_EntityName);
+        var securityToken = getToken();
 
         xmlHttpRequest.open("PUT", lockUri, true);
         xmlHttpRequest.setRequestHeader("Authorization", securityToken);
@@ -469,7 +473,7 @@ function QueueClient(config) {
         /// <param name="lockUri" type="function">
         /// The URI which has been previouslly retrieved by peekLockMessage() function.
         /// </param>
-        var securityToken = getToken(m_EntityName);
+        var securityToken = getToken();
         var xmlHttpRequest = new XMLHttpRequest();
         xmlHttpRequest.open("DELETE", lockUri, true);
         xmlHttpRequest.setRequestHeader("Authorization", securityToken);
