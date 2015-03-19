@@ -171,6 +171,7 @@ function QueueClient(config) {
     /// 'namespace': "your service bus namespace",
     /// 'sasKey': "**cBg=",
     /// 'sasKeyName': the name of the key for SAS "device_send_listen",
+    /// 'sasToken': shared access token string,
     /// 'timeOut': Defines the timeout in seconds in communication with service bus endpoint.,
     /// </param>
     var m_EntityName = "Please provide the queue name. For example 'customer/orders'";
@@ -183,6 +184,8 @@ function QueueClient(config) {
 
     var m_SasKeyName = "provide the SAS key name.";
 
+    var m_SasToken = null;
+
     m_ServiceNamespace = config.namespace;
 
     if (config.name != null)
@@ -193,7 +196,8 @@ function QueueClient(config) {
         m_SasKeyName = config.sasKeyName;
     if (config.timeOut != null)
         m_Timeout = config.timeOut;
-
+    if (config.sasToken != null)
+        m_SasToken = config.sasToken;
     if (config.contentType == null)
         m_ContentType = "application/json";
 
