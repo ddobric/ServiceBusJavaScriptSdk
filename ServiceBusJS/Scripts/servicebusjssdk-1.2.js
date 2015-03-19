@@ -220,7 +220,11 @@ function QueueClient(config) {
     }
 
     var getToken = function () {
-        return generateToken(m_EntityName);
+        if (m_SasToken === null) {
+            return generateToken(m_EntityName);
+        } else {
+            return m_SasToken;
+        }
     };
 
     // Creates shared access signature token.
