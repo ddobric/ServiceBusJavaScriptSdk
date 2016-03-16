@@ -1,5 +1,6 @@
 {
-  "name": "servicebusjs",
+  "name": "servicebusjs-sdk",
+  "private": false,
   "version": "1.0.0",
   "description": "ServiceBusJavaScriptSdk\r =======================",
   "main": "servicebusjssdk-1.2.js",
