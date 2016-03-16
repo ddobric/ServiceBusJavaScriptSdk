@@ -1,7 +1,6 @@
 {
   "name": "servicebusjs",
-  "private": true,
-  "dependencies": { },
+  "private": false, "dependencies": { },
   "devDependencies": {
     "gulp": "^3.9.1"
   },
