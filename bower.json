@@ -1,9 +1,7 @@
 {
   "name": "servicebusjs",
-  "private": false, "dependencies": { },
-  "devDependencies": {
-    "gulp": "^3.9.1"
-  },
+  "dependencies": { },
+  "main": "dist/servicebusjssdk-1.2.min.js",
   "ignore": [
     "**/.*",
     "gulpfile.js",
