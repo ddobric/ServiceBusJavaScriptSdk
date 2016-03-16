@@ -1,5 +1,21 @@
 {
   "name": "servicebusjs",
   "private": true,
-  "dependencies":{}
+  "dependencies": { },
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  },
+  "ignore": [
+    "Scripts",
+    "**/.*",
+    "gulpfile.js",
+    "*.md",
+    "*.html",
+    "bower_components",
+    "bin",
+    "css",
+    "Images",
+    "obj",
+    "Properties"
+  ]
 }
