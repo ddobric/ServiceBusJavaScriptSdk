@@ -1,0 +1,15 @@
+{
+  "name": "servicebusjs-sdk",
+  "dependencies": { },
+  "main": "dist/servicebusjssdk-1.2.min.js",
+  "ignore": [
+    "**/.*",
+    "gulpfile.js",
+    "*.md",
+    "*.html",
+    "bower_components",
+    "node_modules",
+    "ServiceBusJS",
+    "*.sln"
+    ]
+}

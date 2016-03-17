@@ -1,0 +1,24 @@
+{
+  "name": "servicebusjs-sdk",
+  "private": false,
+  "version": "1.0.0",
+  "description": "ServiceBusJavaScriptSdk\r =======================",
+  "main": "servicebusjssdk-1.2.js",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arleyschrock/ServiceBusJavaScriptSdk.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arleyschrock/ServiceBusJavaScriptSdk/issues"
+  },
+  "homepage": "https://github.com/arleyschrock/ServiceBusJavaScriptSdk#readme"
+}
